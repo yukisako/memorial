@@ -12,6 +12,8 @@
 		652F44281C367C190052B835 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 652F44261C367C190052B835 /* Main.storyboard */; };
 		652F442A1C367C190052B835 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 652F44291C367C190052B835 /* Assets.xcassets */; };
 		652F442D1C367C190052B835 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 652F442B1C367C190052B835 /* LaunchScreen.storyboard */; };
+		65C591241C3694D800D1F155 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65C591231C3694D800D1F155 /* TableViewController.swift */; };
+		65C591261C36976E00D1F155 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65C591251C36976E00D1F155 /* CoreLocation.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +24,8 @@
 		652F44291C367C190052B835 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		652F442C1C367C190052B835 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		652F442E1C367C190052B835 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		65C591231C3694D800D1F155 /* TableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
+		65C591251C36976E00D1F155 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,6 +33,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				65C591261C36976E00D1F155 /* CoreLocation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -38,6 +43,7 @@
 		652F44161C367C190052B835 = {
 			isa = PBXGroup;
 			children = (
+				65C591251C36976E00D1F155 /* CoreLocation.framework */,
 				652F44211C367C190052B835 /* Memorial */,
 				652F44201C367C190052B835 /* Products */,
 			);
@@ -57,6 +63,7 @@
 				652F44221C367C190052B835 /* AppDelegate.swift */,
 				652F44241C367C190052B835 /* ViewController.swift */,
 				652F44261C367C190052B835 /* Main.storyboard */,
+				65C591231C3694D800D1F155 /* TableViewController.swift */,
 				652F44291C367C190052B835 /* Assets.xcassets */,
 				652F442B1C367C190052B835 /* LaunchScreen.storyboard */,
 				652F442E1C367C190052B835 /* Info.plist */,
@@ -137,6 +144,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				652F44251C367C190052B835 /* ViewController.swift in Sources */,
+				65C591241C3694D800D1F155 /* TableViewController.swift in Sources */,
 				652F44231C367C190052B835 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -285,6 +293,7 @@
 				652F44331C367C190052B835 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
