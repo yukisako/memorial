@@ -6,10 +6,10 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--Map View Controller-->
+        <!--地図(´・∀・｀)-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController title="Map View Controller" id="BYZ-38-t0r" customClass="ViewController" customModule="Memorial" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="地図(´・∀・｀)" id="BYZ-38-t0r" customClass="ViewController" customModule="Memorial" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -19,27 +19,37 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="j3o-kQ-h5u">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
+                                <rect key="frame" x="0.0" y="28" width="375" height="575"/>
                             </mapView>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Add Explain" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jCV-Yv-Ytw">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailingMargin" secondItem="j3o-kQ-h5u" secondAttribute="trailing" constant="-20" id="Bqe-H5-x8f"/>
+                            <constraint firstItem="jCV-Yv-Ytw" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="Gv8-z8-jeW"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="j3o-kQ-h5u" secondAttribute="bottom" id="JAk-sy-NUp"/>
                             <constraint firstItem="j3o-kQ-h5u" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-20" id="JgX-4A-4IU"/>
-                            <constraint firstItem="j3o-kQ-h5u" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="WgC-ye-e7W"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="jCV-Yv-Ytw" secondAttribute="trailing" constant="-20" id="M5v-zv-krW"/>
+                            <constraint firstItem="jCV-Yv-Ytw" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-20" id="VEc-UU-s2v"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="jCV-Yv-Ytw" secondAttribute="bottom" constant="573" id="WFa-NM-lVr"/>
+                            <constraint firstItem="j3o-kQ-h5u" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="28" id="WgC-ye-e7W"/>
                         </constraints>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
                         <outlet property="map" destination="j3o-kQ-h5u" id="Ahe-wW-pGU"/>
+                        <outlet property="textField" destination="jCV-Yv-Ytw" id="i9e-qj-G2P"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1234.5" y="1106.5"/>
         </scene>
-        <!--Root View Controller-->
+        <!--記念地一覧-->
         <scene sceneID="XS2-4g-Ili">
             <objects>
                 <tableViewController id="vYI-pB-vYe" customClass="TableViewController" customModule="Memorial" customModuleProvider="target" sceneMemberID="viewController">
@@ -55,6 +65,9 @@
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="BYZ-38-t0r" kind="show" id="pke-iC-KBU"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -62,11 +75,11 @@
                             <outlet property="delegate" destination="vYI-pB-vYe" id="W78-es-Av0"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Root View Controller" id="eRz-zW-iEe">
+                    <navigationItem key="navigationItem" title="記念地一覧" id="eRz-zW-iEe">
                         <barButtonItem key="backBarButtonItem" title="back" id="6zM-Qk-S2Q"/>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="HrL-0W-GPd">
                             <connections>
-                                <segue destination="BYZ-38-t0r" kind="show" id="5PA-ik-shV"/>
+                                <segue destination="BYZ-38-t0r" kind="show" identifier="newPlace" id="5PA-ik-shV"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -95,4 +108,7 @@
             <point key="canvasLocation" x="236.5" y="1106.5"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="5PA-ik-shV"/>
+    </inferredMetricsTieBreakers>
 </document>

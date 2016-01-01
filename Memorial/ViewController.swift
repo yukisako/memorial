@@ -13,6 +13,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
 
     @IBOutlet var map: MKMapView!
     
+    @IBOutlet var textField: UITextField!
+    
     var manager :CLLocationManager!
     
     override func viewDidLoad() {
@@ -21,8 +23,38 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         manager = CLLocationManager()
         manager.delegate = self
         manager.desiredAccuracy = kCLLocationAccuracyBest
-        manager.requestWhenInUseAuthorization()
-        manager.startUpdatingLocation()
+        
+        if activePlace == -1 {
+            manager.requestWhenInUseAuthorization()
+            manager.startUpdatingLocation()
+        } else {
+            let latitude = NSString(string: places[activePlace]["lat"]!).doubleValue
+            let longitude = NSString(string: places[activePlace]["lon"]!).doubleValue
+            
+            let coordinate: CLLocationCoordinate2D = CLLocationCoordinate2DMake(latitude, longitude)
+            
+            let latDelta: CLLocationDegrees = 0.01
+            let lonDelta: CLLocationDegrees = 0.01
+            
+            let span: MKCoordinateSpan = MKCoordinateSpanMake(latDelta, lonDelta)
+            
+            let region: MKCoordinateRegion = MKCoordinateRegionMake(coordinate, span)
+            
+            self.map.setRegion(region, animated: true)
+            
+            let annotation = MKPointAnnotation()
+            annotation.coordinate = coordinate
+            if places[activePlace]["explain"] != "説明がありません" {
+                annotation.title = places[activePlace]["explain"]
+            } else {
+                annotation.title = places[activePlace]["name"]
+            }
+            
+            self.map.addAnnotation(annotation)
+        }
+        
+
+
         
 
         
@@ -35,10 +67,10 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         
         userLocation = locations[0]
         
-        let latiude = userLocation.coordinate.latitude
+        let latitude = userLocation.coordinate.latitude
         let longitude = userLocation.coordinate.longitude
         
-        let coordinate: CLLocationCoordinate2D = CLLocationCoordinate2DMake(latiude, longitude)
+        let coordinate: CLLocationCoordinate2D = CLLocationCoordinate2DMake(latitude, longitude)
         
         let latDelta: CLLocationDegrees = 0.01
         let lonDelta: CLLocationDegrees = 0.01
@@ -89,7 +121,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
                         
                         title = "\(subThoroughfare) \(thoroughfare)"
                      
-                        print(title)
+
                     }
                     
                 }
@@ -100,12 +132,31 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
                     
                 }
                 
+                print(self.textField.text!)
                 
+                print(places)
                 //アノテーション(説明書き)を作る
                 let annotation = MKPointAnnotation()
                 annotation.coordinate = newCoordinate
-                annotation.title = title + "Added \(NSDate())"
+
+
+                
+                if let explain = self.textField.text {
+                    if explain != ""{
+                        places.append(["explain" :"\(explain)","name" :title, "lat" :"\(newCoordinate.latitude)", "lon" :"\(newCoordinate.longitude)"])
+                        annotation.title = explain
+                    } else {
+                        places.append(["explain":"説明がありません","name" :title, "lat" :"\(newCoordinate.latitude)", "lon" :"\(newCoordinate.longitude)"])
+                        annotation.title = title
+                    }
+                }else{
+                        places.append(["explain":"説明がありません","name" :title, "lat" :"\(newCoordinate.latitude)", "lon" :"\(newCoordinate.longitude)"])
+                        annotation.title = title
+                }
+                
                 self.map.addAnnotation(annotation)
+
+
                 
                 
             })
@@ -114,7 +165,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
             
             
 
-            
+        
         }
         
         
@@ -126,7 +177,10 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
+    
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        self.view.endEditing(true)
+    }
 
 }
 
